@@ -52,12 +52,16 @@ for loop in range(looprange):
     for node in graphList:
         if node.set:
             for adjNode in node.getAdjNode():
-                if currentState[node.index] == currentState[adjNode] and node.weightPerNumPlusOne == graphList[adjNode].weightPerNumPlusOne:
-                    random.shuffle(ranInOut)
-                    currentState[node.index] = ranInOut[0]
-                    currentState[adjNode] = ranInOut[1]
+                if graphList[adjNode].set == False:
+                    currentState[node.index] = 0
                     node.updateSet()
-                    graphList[adjNode].updateSet()
+                else:
+                    if currentState[node.index] == currentState[adjNode] and node.weightPerNumPlusOne == graphList[adjNode].weightPerNumPlusOne:
+                        random.shuffle(ranInOut)
+                        currentState[node.index] = ranInOut[0]
+                        currentState[adjNode] = ranInOut[1]
+                        node.updateSet()
+                        graphList[adjNode].updateSet()
 
     ######################################################################################
     count = 1

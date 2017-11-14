@@ -35,7 +35,7 @@ for loop in range(looprange):
     ranInOut = [0, 1]
     infiniteFlag = False
 
-    file = open('test2.txt', 'r')      #you can modify testfile here
+    file = open('test1.txt', 'r')      #you can modify testfile here
     for i,line in enumerate(file):
         if i == 1:
             for plot in line.split():
