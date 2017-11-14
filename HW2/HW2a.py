@@ -21,7 +21,7 @@ class Node:
 
 #####################################################################################
 
-results = set()
+results = {}
 looprange = 1000
 
 for loop in range(looprange):
@@ -34,7 +34,7 @@ for loop in range(looprange):
     ranInOut = [0, 1]
     infiniteFlag = False
 
-    file = open('test1.txt', 'r')      #you can modify testfile here
+    file = open('test2.txt', 'r')      #you can modify testfile here
     for i,line in enumerate(file):
         if i == 1:
             for plot in line.split():
@@ -85,9 +85,15 @@ for loop in range(looprange):
     # print(totalWeight)
     resultState = tuple(MWIS)
     if infiniteFlag:
-        results.add('infinite')
-    else:    
-        results.add(resultState)
-
-print(results)
+        if results.get('infinite') == None:
+            results['infinite'] = 1
+        else:
+            results['infinite'] += 1
+    else:
+        if results.get(resultState) == None:    
+            results[resultState] = 1
+        else:
+            results[resultState] += 1
+for key,value in results.items():
+    print(str(key) + " : " + str(value/looprange))
 
